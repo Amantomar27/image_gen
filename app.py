@@ -1,7 +1,12 @@
 from diffusers import DiffusionPipeline
+from huggingface_hub import login
+import os
 import torch
 import streamlit as st
 import matplotlib.pyplot as plt
+
+login(token=os.getenv("HUGGINGFACE_TOKEN"))
+HUGGINGFACE_TOKEN = "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"
 
 # Load the diffusion model
 @st.cache_resource
@@ -11,6 +16,7 @@ def load_pipeline():
         torch_dtype=torch.float16,
         use_safetensors=True,
         variant="fp16"
+        use_auth_token=os.getenv("HUGGINGFACE_TOKEN")
     )
     pipe.to("cuda")
     return pipe
