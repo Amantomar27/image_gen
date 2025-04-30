@@ -15,7 +15,7 @@ def load_pipeline():
         "stabilityai/stable-diffusion-xl-base-1.0",
         torch_dtype=torch.float16,
         use_safetensors=True,
-        variant="fp16"
+        variant="fp16",
         use_auth_token=os.getenv("HUGGINGFACE_TOKEN")
     )
     pipe.to("cuda")
